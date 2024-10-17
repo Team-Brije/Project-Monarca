@@ -42,6 +42,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
     public float playerHeight;
     public LayerMask whatIsGround;
     public bool grounded;
+    public Transform groundCheck;
 
     [Header("Slope Handling")]
     public float maxSlopeAngle;
@@ -90,6 +91,8 @@ public class PlayerMovementAdvanced : MonoBehaviour
     public TextMeshProUGUI text_speed;
     public TextMeshProUGUI text_mode;
 
+    public bool stairs;
+
     private void Start()
     {
         climbingScriptDone = GetComponent<ClimbingDone>();
@@ -99,12 +102,19 @@ public class PlayerMovementAdvanced : MonoBehaviour
         readyToJump = true;
 
         startYScale = transform.localScale.y;
+        grounded = true;
     }
 
     private void Update()
     {
         // ground check
-        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
+        //grounded = Physics.Raycast(groundCheck.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
+
+        stairs = Physics.Raycast(groundCheck.position, Vector3.down, 5, whatIsGround);
+
+        rb.useGravity = !stairs;
+
+        Debug.Log(stairs);
 
         MyInput();
         SpeedControl();
@@ -365,6 +375,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
             float angle = Vector3.Angle(Vector3.up, slopeHit.normal);
             return angle < maxSlopeAngle && angle != 0;
         }
+
 
         return false;
     }
