@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -200,7 +200,12 @@ PrefabInstance:
     - target: {fileID: 5172469205972398298, guid: 7b3e9f072d5a92c4a9c0eb883661855e,
         type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 5201368071667756435, guid: 7b3e9f072d5a92c4a9c0eb883661855e,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 5201368071691429649, guid: 7b3e9f072d5a92c4a9c0eb883661855e,
         type: 3}
@@ -252,6 +257,11 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1191850651}
+    - target: {fileID: 5201368072329980069, guid: 7b3e9f072d5a92c4a9c0eb883661855e,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 5201368072329980071, guid: 7b3e9f072d5a92c4a9c0eb883661855e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -267,6 +277,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -7
       objectReference: {fileID: 0}
+    - target: {fileID: 5201368072351987023, guid: 7b3e9f072d5a92c4a9c0eb883661855e,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 5201368072413544031, guid: 7b3e9f072d5a92c4a9c0eb883661855e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -276,6 +291,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5201368072451007295, guid: 7b3e9f072d5a92c4a9c0eb883661855e,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 5201368072774009129, guid: 7b3e9f072d5a92c4a9c0eb883661855e,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 5201368072798575076, guid: 7b3e9f072d5a92c4a9c0eb883661855e,
         type: 3}
@@ -295,17 +320,17 @@ PrefabInstance:
     - target: {fileID: 5201368072798575076, guid: 7b3e9f072d5a92c4a9c0eb883661855e,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.047632188
+      value: 0.047632225
       objectReference: {fileID: 0}
     - target: {fileID: 5201368072798575076, guid: 7b3e9f072d5a92c4a9c0eb883661855e,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.00000044763507
+      value: 0.00000044763505
       objectReference: {fileID: 0}
     - target: {fileID: 5201368072798575076, guid: 7b3e9f072d5a92c4a9c0eb883661855e,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.000000021388788
+      value: -0.000000021388825
       objectReference: {fileID: 0}
     - target: {fileID: 5201368073156738945, guid: 7b3e9f072d5a92c4a9c0eb883661855e,
         type: 3}
@@ -377,6 +402,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 667db05aa3c22be489a7b3018d5af97b, type: 2}
+    - target: {fileID: 5201368073728196321, guid: 7b3e9f072d5a92c4a9c0eb883661855e,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 5201368073778233522, guid: 7b3e9f072d5a92c4a9c0eb883661855e,
         type: 3}
       propertyPath: m_Enabled
@@ -652,6 +682,7 @@ GameObject:
   - component: {fileID: 573921977}
   - component: {fileID: 573921976}
   - component: {fileID: 573921980}
+  - component: {fileID: 573921981}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -757,6 +788,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d665e654dc4086543b2a6166c199b267, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!54 &573921981
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 573921975}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 2
 --- !u!1 &598735843
 GameObject:
   m_ObjectHideFlags: 0
