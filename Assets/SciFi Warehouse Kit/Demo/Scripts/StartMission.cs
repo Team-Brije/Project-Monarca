@@ -9,7 +9,8 @@ public class StartMission : MonoBehaviour
     {
         if(!Missioncomp)
         {
-            Debug.Log("Rescue the Hostage");
+            return;
+            //Debug.Log("Rescue the Hostage");
         }
 
     }
