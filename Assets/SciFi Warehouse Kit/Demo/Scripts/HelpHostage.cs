@@ -6,7 +6,7 @@ public class HelpHostage : MonoBehaviour
 {
     public GameObject hostage;
     bool canHelp;
-    bool missionactivated = false;
+     public static bool missionactivated = false;
     private void OnTriggerStay(Collider other)
     {
         if(other.CompareTag("Player"))
