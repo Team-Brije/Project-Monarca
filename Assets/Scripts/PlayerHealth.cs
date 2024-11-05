@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class PlayerHealth : MonoBehaviour
 {
     //public TextMeshProUGUI textMeshProUGUI;
-    public static int vidaPlayer = 5;
+    public static int vidaPlayer = 10;
     public static int Maxhealth = 10;
     private void Awake()
     {
@@ -17,9 +17,10 @@ public class PlayerHealth : MonoBehaviour
     {
         //textMeshProUGUI.text = vidaPlayer.ToString();
         
-        if(vidaPlayer == 0)
+        if(vidaPlayer <= 0)
         {
             Debug.Log("Player is dead"); 
+            Destroy(gameObject);
             //SceneManager.LoadScene("Menu");
         }
 

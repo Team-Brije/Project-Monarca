@@ -12,6 +12,7 @@ public class AIBehaviour : MonoBehaviour
     States currentState;
 
     public List<GameObject> waypoints = new List<GameObject>();
+    public List<GameObject> waypointsSch = new List<GameObject>();
 
     // Start is called before the first frame update
     void Start()
@@ -19,12 +20,13 @@ public class AIBehaviour : MonoBehaviour
         agent = this.GetComponent<NavMeshAgent>();
         anim = this.GetComponent<Animator>();
         //podemos cambiar a que estado queremos que este desde el inicio
-        currentState = new Patrol(this.gameObject, agent, anim, player,waypoints);
+        currentState = new Patrol(this.gameObject, agent, anim, player,waypoints,waypointsSch);
     }
 
     // Update is called once per frame
     void Update()
     {
         currentState = currentState.Process();
+        Debug.Log(currentState.ToString());
     }
 }
