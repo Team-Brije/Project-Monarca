@@ -21,7 +21,7 @@ public class States
     protected GameObject npc;
     protected Animator anim;
     protected Transform player;
-
+    protected List<GameObject> Waypoints = new List<GameObject>();
     protected States nextState;
     protected NavMeshAgent agent;
 
@@ -30,12 +30,13 @@ public class States
     float visAngle = 30;
     float visAngleAlert = 40;
     float shootDist = 7;
-    public States(GameObject _npc, NavMeshAgent _agent, Animator _anim, Transform _player){
+    public States(GameObject _npc, NavMeshAgent _agent, Animator _anim, Transform _player, List<GameObject> _waypoints){
         npc = _npc;
         agent = _agent;
         anim = _anim;
         stage = EVENT.ENTER;
         player = _player;
+        Waypoints = _waypoints;
     }
 
     public virtual void Enter() { stage = EVENT.UPDATE; }
@@ -81,12 +82,28 @@ public class States
 
 public class Patrol : States
 {
-    public Patrol(GameObject _npc, NavMeshAgent _agent, Animator _anim, Transform _player) : base(_npc, _agent, _anim, _player){
+    int currentIndex = -1;
+    public Patrol(GameObject _npc, NavMeshAgent _agent, Animator _anim, Transform _player, List<GameObject> _waypoints) : base(_npc, _agent, _anim, _player,_waypoints){
         name = STATE.PATROL;
+        agent.speed = 2;
+        agent.isStopped = false;
     }
+
+    
 
     public override void Enter()
     {
+        float lastDist = Mathf.Infinity;
+        for (int i = 0; i < Waypoints.Count; i++)
+        {
+            GameObject thisWP = Waypoints[i];
+            float distance = Vector3.Distance(npc.transform.position, thisWP.transform.position);
+            if (distance < lastDist)
+            {
+                currentIndex = i - 1;
+                lastDist = distance;
+            }
+        }
         //tengo entendido que aqui configura e inicia el navmesh creo
         //tambien aqui suele configurar la velocidad del npc
         base.Enter();
@@ -94,11 +111,20 @@ public class Patrol : States
 
     public override void Update()
     {
+        if (agent.remainingDistance < 1)
+        {
+            if (currentIndex >= Waypoints.Count - 1)
+                currentIndex = 0;
+            else
+                currentIndex++;
+
+            agent.SetDestination(Waypoints[currentIndex].transform.position);
+        }
         //aqui comprobar la distancia entre el jugador para que empieze a atacar
         //aqui ejuctamos tambien el codigo para que el navmesh funcione correctamente
-        if(CanSeePlayer()){
+        if (CanSeePlayer()){
             //aqui va el codigo cuando detecta al jugador
-            nextState = new Pursue(npc, agent, anim, player);
+            nextState = new Pursue(npc, agent, anim, player, Waypoints);
             stage = EVENT.EXIT;
         }
         //por algun motivo no usa base.update aqui
@@ -108,13 +134,16 @@ public class Patrol : States
 
 public class Pursue : States
 {
-    public Pursue(GameObject _npc, NavMeshAgent _agent, Animator _anim, Transform _player) : base( _npc, _agent, _anim, _player){
+    public Pursue(GameObject _npc, NavMeshAgent _agent, Animator _anim, Transform _player, List<GameObject> _waypoints) : base( _npc, _agent, _anim, _player,_waypoints){
         name = STATE.PURSUE;
+        agent.speed = 5;
+        agent.isStopped = false;
         //cambiar la velocidad del npc 
     }
 
     public override void Enter()
     {
+
         //alguna animacion de correr o parecido
         base.Enter();
     }
@@ -128,11 +157,11 @@ public class Pursue : States
         {
             //ifpara checar si esta a distancia par atacarnos
             if(CanAttackPlayer()){
-                nextState = new Attack(npc, agent, anim, player);
+                nextState = new Attack(npc, agent, anim, player, Waypoints);
                 stage = EVENT.EXIT;
             }
             else if(!CanSeePlayer()){ //comprobamos que todavia el enemigo puede ver al jugador
-                nextState = new Searching(npc, agent, anim, player);
+                nextState = new Patro(npc, agent, anim, player, Waypoints);
                 stage = EVENT.EXIT;
             }
         }
@@ -148,7 +177,7 @@ public class Pursue : States
 
 public class Attack : States
 {
-    public Attack(GameObject _npc, NavMeshAgent _agent, Animator _anim, Transform _player) : base( _npc, _agent, _anim, _player){
+    public Attack(GameObject _npc, NavMeshAgent _agent, Animator _anim, Transform _player, List<GameObject> _waypoints) : base( _npc, _agent, _anim, _player, _waypoints){
         name = STATE.ATTACK;
         //conseguir alguna variable necesaria dentro de npc, el profe usa el ejemplo de llamar a un audio source
     }
@@ -174,7 +203,7 @@ public class Attack : States
         npc.transform.rotation = Quaternion.Slerp(npc.transform.rotation, Quaternion.LookRotation(direction), Time.deltaTime * rotationSpeed);
         */
         if(!CanAttackPlayer()){
-            nextState = new Searching(npc, agent, anim, player);
+            nextState = new Searching(npc, agent, anim, player, Waypoints);
             stage = EVENT.EXIT;
         }
         //base.Update();
@@ -183,7 +212,7 @@ public class Attack : States
 
 public class Alert : States
 {
-    public Alert(GameObject _npc, NavMeshAgent _agent, Animator _anim, Transform _player) : base( _npc, _agent, _anim, _player){
+    public Alert(GameObject _npc, NavMeshAgent _agent, Animator _anim, Transform _player, List<GameObject> _waypoints) : base( _npc, _agent, _anim, _player,_waypoints){
         name = STATE.ALERT;
 
     }
@@ -199,7 +228,7 @@ public class Alert : States
     {
         //que se quede quieto un rato antes de volver a patrullar
         if(CanSeePlayer2()){
-            nextState = new Pursue(npc, agent, anim, player);
+            nextState = new Pursue(npc, agent, anim, player, Waypoints);
             stage = EVENT.EXIT;
         }
         //base.Update();
@@ -213,7 +242,7 @@ public class Alert : States
 }
 
 public class Searching : States{
-    public Searching(GameObject _npc, NavMeshAgent _agent, Animator _anim, Transform _player) : base( _npc, _agent, _anim, _player){
+    public Searching(GameObject _npc, NavMeshAgent _agent, Animator _anim, Transform _player, List<GameObject> _waypoints) : base(_npc, _agent, _anim, _player,_waypoints){
         name = STATE.SEARCHING;
     }
 
@@ -227,7 +256,7 @@ public class Searching : States{
         //una funcion para detectar al jugador si esta cerca 
         //aqui hacer que camine una distancia mas hacia adelante y luego regresar a idle
         if(CanSeePlayer()){
-            nextState = new Pursue(npc, agent, anim, player);
+            nextState = new Pursue(npc, agent, anim, player, Waypoints);
             stage = EVENT.EXIT;
         }
         //base.Update();
@@ -241,7 +270,7 @@ public class Searching : States{
 
 public class Idle : States
 {
-    public Idle(GameObject _npc, NavMeshAgent _agent, Animator _anim, Transform _player) : base( _npc, _agent, _anim, _player){
+    public Idle(GameObject _npc, NavMeshAgent _agent, Animator _anim, Transform _player, List<GameObject> _waypoints) : base( _npc, _agent, _anim, _player, _waypoints){
         name = STATE.IDLE;
     }
 
@@ -256,7 +285,7 @@ public class Idle : States
         //aqui hacer que despues de un rato regrese a patrulleo
         //meto la funcion pa que detecte si el jugador pasa por delante
         if(CanSeePlayer()){
-            nextState = new Pursue(npc, agent, anim, player);
+            nextState = new Pursue(npc, agent, anim, player,Waypoints);
             stage = EVENT.EXIT;
         }
         //base.Update();
