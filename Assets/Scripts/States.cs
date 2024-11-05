@@ -208,6 +208,7 @@ public class Attack : States
             PlayerHealth.vidaPlayer -= 3;
             canAttack = false;
             cooldown = 0;
+            anim.SetTrigger("Shoot");
         }
         if (!canAttack)
         {
