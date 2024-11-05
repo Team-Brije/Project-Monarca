@@ -22,6 +22,8 @@ public class ThirdPersonCam : MonoBehaviour
 
     public static bool canShoot;
 
+    public Animator animator;
+    public GameObject Gun;
     public enum CameraStyle
     {
         Basic,
@@ -31,6 +33,7 @@ public class ThirdPersonCam : MonoBehaviour
 
     private void Start()
     {
+        Gun.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
@@ -39,12 +42,12 @@ public class ThirdPersonCam : MonoBehaviour
     {
         print("CanYou shoot: " + canShoot);
         // switch styles
-        if (Input.GetKeyDown(KeyCode.Alpha1)) SwitchCameraStyle(CameraStyle.Basic); 
-        if (Input.GetKeyDown(KeyCode.Alpha2)) SwitchCameraStyle(CameraStyle.Combat);
-        //if (Input.GetKeyDown(KeyCode.Alpha3)) SwitchCameraStyle(CameraStyle.Topdown); 
+        if (Input.GetKeyDown(KeyCode.Alpha1)) SwitchCameraStyle(CameraStyle.Basic); Gun.SetActive(false);
+        if (Input.GetKeyDown(KeyCode.Alpha2)) SwitchCameraStyle(CameraStyle.Combat); Gun.SetActive(true);
+        //if (Input.GetKeyDown(KeyCode.Alpha3)) SwitchCameraStyle(CameraStyle.Topdown);
 
         //Can shoot only in Combat Camera
-
+        
         
         // rotate orientation
         Vector3 viewDir = player.position - new Vector3(transform.position.x, player.position.y, transform.position.z);
@@ -77,9 +80,9 @@ public class ThirdPersonCam : MonoBehaviour
         thirdPersonCam.SetActive(false);
         topDownCam.SetActive(false);
 
-        if (newStyle == CameraStyle.Basic) thirdPersonCam.SetActive(true);
-        if (newStyle == CameraStyle.Combat) combatCam.SetActive(true);
-        if (newStyle == CameraStyle.Topdown) topDownCam.SetActive(true);
+        if (newStyle == CameraStyle.Basic) thirdPersonCam.SetActive(true); if (Input.GetKeyDown(KeyCode.Alpha2)) animator.SetTrigger("Draw"); 
+        if (newStyle == CameraStyle.Combat) combatCam.SetActive(true); if (Input.GetKeyDown(KeyCode.Alpha1)) animator.SetTrigger("Holster"); 
+        if (newStyle == CameraStyle.Topdown) topDownCam.SetActive(true); 
 
         currentStyle = newStyle;
     }

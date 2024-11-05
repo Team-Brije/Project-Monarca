@@ -5,7 +5,7 @@ using UnityEngine;
 public class Pistolita : MonoBehaviour
 {   
     RaycastHit hit;
-
+    public Animator animator;
     void Update()
     {
             Debug.DrawRay(transform.position, transform.forward, Color.yellow);
@@ -13,6 +13,7 @@ public class Pistolita : MonoBehaviour
         {
             if(Input.GetMouseButtonDown(0))
             {
+                animator.SetTrigger("Shoot");
                 if (Physics.Raycast(transform.position, transform.forward, out hit))
                 {
                     if (hit.collider.gameObject.tag == "Enemy")
