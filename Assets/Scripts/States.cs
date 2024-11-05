@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -161,7 +162,7 @@ public class Pursue : States
                 stage = EVENT.EXIT;
             }
             else if(!CanSeePlayer()){ //comprobamos que todavia el enemigo puede ver al jugador
-                nextState = new Patro(npc, agent, anim, player, Waypoints);
+                nextState = new Searching(npc, agent, anim, player, Waypoints);
                 stage = EVENT.EXIT;
             }
         }
@@ -177,23 +178,39 @@ public class Pursue : States
 
 public class Attack : States
 {
+    bool canAttack = true;
+    float cooldown = 0;
+    float rotationSpeed = 2f;
     public Attack(GameObject _npc, NavMeshAgent _agent, Animator _anim, Transform _player, List<GameObject> _waypoints) : base( _npc, _agent, _anim, _player, _waypoints){
         name = STATE.ATTACK;
+        
         //conseguir alguna variable necesaria dentro de npc, el profe usa el ejemplo de llamar a un audio source
     }
 
     public override void Enter()
     {
         //animacion de ataque
+        
         //el profe pone el ejemplo de ejecutar el sonido aqui
         base.Enter();
     }
 
     public override void Update()
     {
+        if (canAttack)
+        {
+            PlayerHealth.vidaPlayer -= 3;
+            canAttack = false;
+            cooldown = 0;
+        }
+        if (!canAttack)
+        {
+            cooldown += Time.deltaTime;
+            if(cooldown >= 2) { canAttack = true; }
+        }
         //Funciones para atacar o conseguir donde esta el jugador
         //El profe pone estos ejemplos para tanto para calcular la direccion como la rotacion en si para atacar los paso por si llegan a servir
-        /*
+        
         //necesitamos calcular la dirección y el ángulo entre el npc y el jugador
         Vector3 direction = player.position - npc.transform.position;
         float angle = Vector3.Angle(direction, npc.transform.forward);
@@ -201,7 +218,7 @@ public class Attack : States
 
         //para hacer la rotación necesitamos hacer un Quaternion
         npc.transform.rotation = Quaternion.Slerp(npc.transform.rotation, Quaternion.LookRotation(direction), Time.deltaTime * rotationSpeed);
-        */
+        
         if(!CanAttackPlayer()){
             nextState = new Searching(npc, agent, anim, player, Waypoints);
             stage = EVENT.EXIT;
