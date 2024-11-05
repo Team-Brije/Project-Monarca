@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 4321441197235386112}
   - component: {fileID: 5061152856266138967}
   m_Layer: 0
-  m_Name: Capsule
+  m_Name: EnemyCapsule
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -138,9 +138,9 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 1
-  m_Interpolate: 1
+  m_Interpolate: 0
   m_Constraints: 80
-  m_CollisionDetection: 2
+  m_CollisionDetection: 1
 --- !u!114 &3800245442339767958
 MonoBehaviour:
   m_ObjectHideFlags: 0
