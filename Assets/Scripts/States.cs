@@ -87,6 +87,7 @@ public class States
 public class Patrol : States
 {
     int currentIndex = -1;
+
     public Patrol(GameObject _npc, NavMeshAgent _agent, Animator _anim, Transform _player, List<GameObject> _waypoints, List<GameObject> _waypointsSch) : base(_npc, _agent, _anim, _player,_waypoints, _waypointsSch){
         name = STATE.PATROL;
         agent.speed = 2;
@@ -166,7 +167,7 @@ public class Pursue : States
                 stage = EVENT.EXIT;
             }
             else if(!CanSeePlayer()){ //comprobamos que todavia el enemigo puede ver al jugador
-                nextState = new Searching(npc, agent, anim, player, Waypoints,WaypointsSch);
+                nextState = new Alert(npc, agent, anim, player, Waypoints,WaypointsSch);
                 stage = EVENT.EXIT;
             }
         }
