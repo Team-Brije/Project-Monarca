@@ -11,7 +11,7 @@ public class HelpHostage : MonoBehaviour
     {
         if(other.CompareTag("Player"))
         {
-            Debug.Log("In zone");
+            
             canHelp = true;
         }
        
@@ -30,7 +30,7 @@ public class HelpHostage : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.F) && canHelp && !missionactivated)
         {
-            Debug.Log("helping hostage");
+            
             hostage.gameObject.GetComponent<Hostage>().enabled = true;
             missionactivated = true;
 

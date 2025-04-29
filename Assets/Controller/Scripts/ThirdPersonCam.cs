@@ -40,7 +40,7 @@ public class ThirdPersonCam : MonoBehaviour
 
     private void Update()
     {
-        print("CanYou shoot: " + canShoot);
+        //print("CanYou shoot: " + canShoot);
         // switch styles
         if (Input.GetKeyDown(KeyCode.Alpha1)) SwitchCameraStyle(CameraStyle.Basic); Gun.SetActive(false);
         if (Input.GetKeyDown(KeyCode.Alpha2)) SwitchCameraStyle(CameraStyle.Combat); Gun.SetActive(true);
