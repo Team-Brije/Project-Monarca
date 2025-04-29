@@ -32,6 +32,8 @@ public class States
     float visAngle = 30;
     float visAngleAlert = 40;
     float shootDist = 7;
+
+    public AudioSource audioSource;
     public States(GameObject _npc, NavMeshAgent _agent, Animator _anim, Transform _player, List<GameObject> _waypoints, List<GameObject> _waypointsSch)
     {
         npc = _npc;

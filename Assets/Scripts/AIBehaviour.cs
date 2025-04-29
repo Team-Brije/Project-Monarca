@@ -10,6 +10,7 @@ public class AIBehaviour : MonoBehaviour
     Animator anim;
     public Transform player;
     States currentState;
+    public AudioSource audioSource;
 
     public List<GameObject> waypoints = new List<GameObject>();
     public List<GameObject> waypointsSch = new List<GameObject>();
@@ -27,6 +28,9 @@ public class AIBehaviour : MonoBehaviour
     void Update()
     {
         currentState = currentState.Process();
-        Debug.Log(currentState.ToString());
+        if(currentState.CanSeePlayer()){
+            audioSource.Play();
+        }
+        //Debug.Log(currentState.ToString());
     }
 }
