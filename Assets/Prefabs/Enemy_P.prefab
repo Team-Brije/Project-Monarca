@@ -154,7 +154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14b6273f9dbae4549862514027ce37ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LastBreath: {fileID: 9141615612814046738}
+  deathSound: {fileID: 8300000, guid: 56d38b5474d7ef24681ec07e10312026, type: 3}
   vidaMaloso: 5
   isDead: 0
   enemyfull: {fileID: 3642312994255259468}
