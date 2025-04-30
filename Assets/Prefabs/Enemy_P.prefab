@@ -193,6 +193,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   audioSource: {fileID: 4701051639649391502}
+  audioClip: {fileID: 8300000, guid: c6ce6ac5cad4a134d8e9a16bcb57faee, type: 3}
   waypoints:
   - {fileID: 0}
   - {fileID: 0}

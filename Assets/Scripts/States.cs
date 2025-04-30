@@ -32,8 +32,12 @@ public class States
     float visAngle = 30;
     float visAngleAlert = 40;
     float shootDist = 7;
+    
 
-    public AudioSource audioSource;
+    public bool veJugador= false;
+    public bool resetSee=false;
+
+   
     public States(GameObject _npc, NavMeshAgent _agent, Animator _anim, Transform _player, List<GameObject> _waypoints, List<GameObject> _waypointsSch)
     {
         npc = _npc;
@@ -88,6 +92,7 @@ public class States
 
 public class Patrol : States
 {
+    
     int currentIndex = -1;
 
     public Patrol(GameObject _npc, NavMeshAgent _agent, Animator _anim, Transform _player, List<GameObject> _waypoints, List<GameObject> _waypointsSch) : base(_npc, _agent, _anim, _player,_waypoints, _waypointsSch){
@@ -100,6 +105,9 @@ public class Patrol : States
 
     public override void Enter()
     {
+        veJugador=false;
+       
+        
         float lastDist = Mathf.Infinity;
         for (int i = 0; i < Waypoints.Count; i++)
         {
@@ -118,9 +126,10 @@ public class Patrol : States
 
     public override void Update()
     {
-        Debug.Log(CanSeePlayer());
+        //Debug.Log(CanSeePlayer());
         if (agent.remainingDistance < 1)
         {
+
             if (currentIndex >= Waypoints.Count - 1)
                 currentIndex = 0;
             else
@@ -131,12 +140,19 @@ public class Patrol : States
         //aqui comprobar la distancia entre el jugador para que empieze a atacar
         //aqui ejuctamos tambien el codigo para que el navmesh funcione correctamente
         if (CanSeePlayer()){
-            //aqui va el codigo cuando detecta al jugador
+                
+                      //aqui va el codigo cuando detecta al jugador
+                      
             nextState = new Pursue(npc, agent, anim, player, Waypoints,WaypointsSch);
             stage = EVENT.EXIT;
         }
         //por algun motivo no usa base.update aqui
         //base.Update();
+    }
+    public override void Exit()
+    {
+        //aqui suele usar el resset trigger anim
+        
     }
 }
 
@@ -151,8 +167,9 @@ public class Pursue : States
 
     public override void Enter()
     {
-
+        
         //alguna animacion de correr o parecido
+        veJugador=true;
         base.Enter();
     }
 
@@ -169,6 +186,7 @@ public class Pursue : States
                 stage = EVENT.EXIT;
             }
             else if(!CanSeePlayer()){ //comprobamos que todavia el enemigo puede ver al jugador
+                resetSee=true;
                 nextState = new Alert(npc, agent, anim, player, Waypoints,WaypointsSch);
                 stage = EVENT.EXIT;
             }
@@ -198,14 +216,14 @@ public class Attack : States
     public override void Enter()
     {
         //animacion de ataque
-        
+        veJugador=true;
         //el profe pone el ejemplo de ejecutar el sonido aqui
         base.Enter();
     }
 
     public override void Update()
     {
-        Debug.Log(PlayerHealth.vidaPlayer);
+        //Debug.Log(PlayerHealth.vidaPlayer);
         if (canAttack)
         {
             PlayerHealth.vidaPlayer -= 3;
@@ -231,6 +249,7 @@ public class Attack : States
         
         if(!CanAttackPlayer()){
             nextState = new Searching(npc, agent, anim, player, Waypoints, WaypointsSch);
+            resetSee=true;
             stage = EVENT.EXIT;
         }
         //base.Update();
@@ -249,6 +268,7 @@ public class Alert : States
 
     public override void Enter()
     {
+        veJugador=false;
         //que se quede quieto pero con mayor visibilidad
         base.Enter();
 
@@ -294,6 +314,7 @@ public class Searching : States{
 
     public override void Enter()
     {
+        veJugador=false;
         //cambiar la velocidad
         float lastDist = Mathf.Infinity;
         for (int i = 0; i < WaypointsSch.Count; i++)
@@ -358,6 +379,7 @@ public class Idle : States
 
     public override void Enter()
     {
+        //veJugador=false;
         //detenerlo que se quede pensando en las malas acciones que a realizado
         base.Enter();
     }
