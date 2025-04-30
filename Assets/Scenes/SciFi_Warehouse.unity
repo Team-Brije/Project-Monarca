@@ -23205,7 +23205,7 @@ PrefabInstance:
     - target: {fileID: 5201368072413544031, guid: 7b3e9f072d5a92c4a9c0eb883661855e,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.074925385
+      value: 0.07492638
       objectReference: {fileID: 0}
     - target: {fileID: 5201368072413544031, guid: 7b3e9f072d5a92c4a9c0eb883661855e,
         type: 3}
@@ -23215,7 +23215,7 @@ PrefabInstance:
     - target: {fileID: 5201368072413544031, guid: 7b3e9f072d5a92c4a9c0eb883661855e,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.17337143
+      value: -0.17337096
       objectReference: {fileID: 0}
     - target: {fileID: 5201368072413888177, guid: 7b3e9f072d5a92c4a9c0eb883661855e,
         type: 3}
@@ -23290,7 +23290,7 @@ PrefabInstance:
     - target: {fileID: 5201368072798575076, guid: 7b3e9f072d5a92c4a9c0eb883661855e,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.05485042
+      value: 0.054850437
       objectReference: {fileID: 0}
     - target: {fileID: 5201368072798575076, guid: 7b3e9f072d5a92c4a9c0eb883661855e,
         type: 3}
@@ -25550,7 +25550,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 552049937}
   municion: 5
-  pared: {fileID: 8300000, guid: a5d8c226dd017ba479ad9686447bc163, type: 3}
+  pared: {fileID: 8300000, guid: b9099d8a70cf4e34ca54132cf5d55b12, type: 3}
   enemigo: {fileID: 8300000, guid: c7aae2e6b8d5e7c489aac61e8cf15ec7, type: 3}
   audioSource: {fileID: 907101762}
   shoot: 0
@@ -30427,7 +30427,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -6853488669660920475, guid: 736ba1bca555ec74fb2b38b7e541f9d3,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: a5d8c226dd017ba479ad9686447bc163, type: 3}
+  m_audioClip: {fileID: 8300000, guid: b9099d8a70cf4e34ca54132cf5d55b12, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

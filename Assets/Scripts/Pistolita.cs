@@ -25,13 +25,14 @@ public class Pistolita : MonoBehaviour
     public GameObject SoundBullet;
     void Update()
     {
+        selectSound();
         if(municion <= 0){
             ThirdPersonCam.canShoot = false;
         }
         if(Input.GetKeyDown(KeyCode.R) && municion < 5 && canReload){
             StartCoroutine(recarga());
         }
-            Debug.DrawRay(transform.position, transform.forward, Color.yellow);
+            //Debug.DrawRay(transform.position, transform.forward, Color.yellow);
         if (ThirdPersonCam.canShoot == true)
         {
             if(Input.GetMouseButtonDown(0))
@@ -45,11 +46,13 @@ public class Pistolita : MonoBehaviour
                 {
                     if (hit.collider.gameObject.tag == "Enemy")
                     {
-                        audioSource.PlayDelayed(0.1f);
+                        audioSource.clip=enemigo;
                         hit.collider.gameObject.GetComponent<EnemyHealth>().vidaMaloso--;
                         Debug.Log("Vida del enemigo: " + hit.collider.gameObject.GetComponent<EnemyHealth>().vidaMaloso);
                         
-                    } 
+                    } else if(hit.collider.gameObject.tag != "Enemy"){
+                        audioSource.clip = pared;
+                    }
                 }   
             }
         }
@@ -65,6 +68,21 @@ public class Pistolita : MonoBehaviour
         municion = 5;
         canReload = true;
         animator.SetBool("canShoot", true);
+    }
+
+     void selectSound(){
+
+        if (Physics.Raycast(transform.position, transform.forward, out hit)){
+            if (hit.collider.gameObject.tag == "Enemy")
+                    {
+                        audioSource.clip=enemigo;
+                    } else if(hit.collider.gameObject.tag != "Enemy"){
+                        audioSource.clip = pared;
+                    }
+        }
+         
+
+                    
     }
 
     public IEnumerator shooting(){
