@@ -5,6 +5,12 @@ using TMPro;
 
 public class PlayerMovementAdvanced : MonoBehaviour
 {
+    [Header("Sounds")]
+    [SerializeField]
+    AudioSource walkSource;
+    bool isMoving = false;
+
+
     [Header("Movement")]
     private float moveSpeed;
     private float desiredMoveSpeed;
@@ -137,6 +143,24 @@ public class PlayerMovementAdvanced : MonoBehaviour
     {
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
+
+        // Verifica si se está presionando cualquier tecla de movimiento
+        bool hasHorizontalInput = Input.GetButton("Horizontal");
+        bool hasVerticalInput = Input.GetButton("Vertical");
+        bool shouldBeMoving = hasHorizontalInput || hasVerticalInput;
+
+        // Si debería estar moviéndose pero el audio no está activo
+        if (shouldBeMoving && !isMoving)
+        {
+            walkSource.Play();
+            isMoving = true;
+        }
+        // Si no debería estar moviéndose pero el audio está activo
+        else if (!shouldBeMoving && isMoving)
+        {
+            walkSource.Pause(); // o walkSource.Stop() según lo que prefieras
+            isMoving = false;
+        }
 
         // when to jump
         if (Input.GetKey(jumpKey) && readyToJump && grounded)
@@ -312,15 +336,18 @@ public class PlayerMovementAdvanced : MonoBehaviour
         if (OnSlope() && !exitingSlope)
         {
             rb.AddForce(GetSlopeMoveDirection(moveDirection) * moveSpeed * 20f, ForceMode.Force);
-
+            
             if (rb.velocity.y > 0)
                 rb.AddForce(Vector3.down * 80f, ForceMode.Force);
+            
         }
 
         // on ground
         else if (grounded)
-            rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
-
+        {
+            rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);   
+        }
+            
         // in air
         else if (!grounded)
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force);
