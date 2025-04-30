@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
+    [SerializeField]
+    AudioSource LastBreath;
     public int vidaMaloso = 5;
     public bool isDead = false;
     public GameObject enemyfull;
@@ -12,7 +14,8 @@ public class EnemyHealth : MonoBehaviour
         if(vidaMaloso == 0)
         {
             isDead = true;
-            Destroy(enemyfull);
+            LastBreath.Play();
+            Destroy(enemyfull,2f);
         }
     }
 }
