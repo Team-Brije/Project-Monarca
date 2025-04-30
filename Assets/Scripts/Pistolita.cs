@@ -19,11 +19,16 @@ public class Pistolita : MonoBehaviour
     public bool shoot = false;
     public bool isEnemy = false;
 
+    public AudioClip pared;
+    public AudioClip enemigo;
+    
+
     bulletHitSounds bulletHitSounds = new bulletHitSounds();
 
     public GameObject SoundBullet;
     void Update()
     {
+        selectSound();
         if(municion <= 0){
             ThirdPersonCam.canShoot = false;
         }
@@ -45,11 +50,14 @@ public class Pistolita : MonoBehaviour
                 {
                     if (hit.collider.gameObject.tag == "Enemy")
                     {
-                        audioSource.PlayDelayed(0.1f);
+                        audioSource.clip=enemigo;
                         hit.collider.gameObject.GetComponent<EnemyHealth>().vidaMaloso--;
                         Debug.Log("Vida del enemigo: " + hit.collider.gameObject.GetComponent<EnemyHealth>().vidaMaloso);
                         
                     } 
+                     else if(hit.collider.gameObject.tag != "Enemy"){
+                        audioSource.clip = pared;
+                    }
                 }   
             }
         }
@@ -78,4 +86,15 @@ public class Pistolita : MonoBehaviour
             SoundBullet.transform.position=hit.point;
       }
     }
-}
+    void selectSound(){
+
+        if (Physics.Raycast(transform.position, transform.forward, out hit)){
+            if (hit.collider.gameObject.tag == "Enemy")
+                    {
+                        audioSource.clip=enemigo;
+                    } else if(hit.collider.gameObject.tag != "Enemy"){
+                        audioSource.clip = pared;
+                    }
+        }
+}}
+

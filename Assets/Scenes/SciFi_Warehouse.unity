@@ -23443,7 +23443,7 @@ PrefabInstance:
     - target: {fileID: 5201368071951429928, guid: 7b3e9f072d5a92c4a9c0eb883661855e,
         type: 3}
       propertyPath: m_VersionIndex
-      value: 6
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 5201368071951429928, guid: 7b3e9f072d5a92c4a9c0eb883661855e,
         type: 3}
@@ -23598,12 +23598,12 @@ PrefabInstance:
     - target: {fileID: 5201368072413544031, guid: 7b3e9f072d5a92c4a9c0eb883661855e,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.38847917
+      value: 0.3884792
       objectReference: {fileID: 0}
     - target: {fileID: 5201368072413544031, guid: 7b3e9f072d5a92c4a9c0eb883661855e,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.0749651
+      value: 0.074966095
       objectReference: {fileID: 0}
     - target: {fileID: 5201368072413544031, guid: 7b3e9f072d5a92c4a9c0eb883661855e,
         type: 3}
@@ -23613,7 +23613,7 @@ PrefabInstance:
     - target: {fileID: 5201368072413544031, guid: 7b3e9f072d5a92c4a9c0eb883661855e,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.17335434
+      value: -0.1733539
       objectReference: {fileID: 0}
     - target: {fileID: 5201368072413888177, guid: 7b3e9f072d5a92c4a9c0eb883661855e,
         type: 3}
@@ -23688,7 +23688,7 @@ PrefabInstance:
     - target: {fileID: 5201368072798575076, guid: 7b3e9f072d5a92c4a9c0eb883661855e,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.05485035
+      value: 0.054850355
       objectReference: {fileID: 0}
     - target: {fileID: 5201368072798575076, guid: 7b3e9f072d5a92c4a9c0eb883661855e,
         type: 3}
@@ -23868,7 +23868,7 @@ PrefabInstance:
     - target: {fileID: 5201368073556174530, guid: 7b3e9f072d5a92c4a9c0eb883661855e,
         type: 3}
       propertyPath: m_VersionIndex
-      value: 6
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 5201368073556174530, guid: 7b3e9f072d5a92c4a9c0eb883661855e,
         type: 3}
@@ -25965,9 +25965,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 552049937}
   municion: 5
-  pared: {fileID: 8300000, guid: b9099d8a70cf4e34ca54132cf5d55b12, type: 3}
-  enemigo: {fileID: 8300000, guid: c7aae2e6b8d5e7c489aac61e8cf15ec7, type: 3}
   audioSource: {fileID: 907101762}
+  reloadSource: {fileID: 0}
   shoot: 0
   isEnemy: 0
   SoundBullet: {fileID: 907101761}
