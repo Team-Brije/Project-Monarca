@@ -11,9 +11,12 @@ public class AIBehaviour : MonoBehaviour
     public Transform player;
     States currentState;
     public AudioSource audioSource;
+    public AudioClip audioClip;
 
     public List<GameObject> waypoints = new List<GameObject>();
     public List<GameObject> waypointsSch = new List<GameObject>();
+
+    int hasBeenSeen = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -27,10 +30,25 @@ public class AIBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Debug.Log(hasBeenSeen);
+        Debug.Log(currentState.name);
+
         currentState = currentState.Process();
-        if(currentState.CanSeePlayer()){
+        if(currentState.veJugador==true){
+            hasBeenSeen++;
+            
+        }
+
+        if(currentState.resetSee==true){
+            hasBeenSeen=0;
+            currentState.resetSee=false;
+        }
+
+        if(hasBeenSeen==1){
             audioSource.Play();
         }
         //Debug.Log(currentState.ToString());
     }
+
+    
 }

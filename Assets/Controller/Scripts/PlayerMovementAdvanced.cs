@@ -114,7 +114,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
 
         rb.useGravity = !stairs;
 
-        Debug.Log(stairs);
+        //Debug.Log(stairs);
 
         MyInput();
         SpeedControl();
