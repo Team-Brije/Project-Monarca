@@ -60,6 +60,7 @@ public class Settings : MonoBehaviour
     public void Play()
     {
         SceneManager.LoadScene(1);
+        Time.timeScale = 1;
     }
     public void Quit()
     {

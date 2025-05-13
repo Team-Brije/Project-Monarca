@@ -29,6 +29,7 @@ public class FinishMisiion : MonoBehaviour
             AudioWin.Play();
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
+            Time.timeScale = 0;
             Debug.Log("Won");
         }
     }

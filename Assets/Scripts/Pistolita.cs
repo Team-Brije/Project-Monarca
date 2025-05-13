@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using JetBrains.Annotations;
 using UnityEngine;
 
@@ -18,6 +19,9 @@ public class Pistolita : MonoBehaviour
     AudioSource reloadSource;
     public bool shoot = false;
     public bool isEnemy = false;
+    public float Cooldown = 0;
+
+    private float nextTimeToFire = 0.3f;
 
     public AudioClip pared;
     public AudioClip enemigo;
@@ -28,6 +32,8 @@ public class Pistolita : MonoBehaviour
     public GameObject SoundBullet;
     void Update()
     {
+
+        Cooldown -= Time.deltaTime;
         selectSound();
         if(municion <= 0){
             ThirdPersonCam.canShoot = false;
@@ -39,12 +45,13 @@ public class Pistolita : MonoBehaviour
             Debug.DrawRay(transform.position, transform.forward, Color.yellow);
         if (ThirdPersonCam.canShoot == true)
         {
-            if(Input.GetMouseButtonDown(0))
+            if(Input.GetMouseButtonDown(0) && Cooldown <= 0)
             {
                 animator.SetTrigger("Shoot");
                 StartCoroutine(shooting());
                 audioSource.PlayDelayed(0.1f);
-                
+                Cooldown = nextTimeToFire;
+
                 municion--;
                 if (Physics.Raycast(transform.position, transform.forward, out hit))
                 {

@@ -12,6 +12,7 @@ public class AIBehaviour : MonoBehaviour
     States currentState;
     public AudioSource audioSource;
     public AudioClip audioClip;
+    public AudioSource Disparo;
 
     public List<GameObject> waypoints = new List<GameObject>();
     public List<GameObject> waypointsSch = new List<GameObject>();
