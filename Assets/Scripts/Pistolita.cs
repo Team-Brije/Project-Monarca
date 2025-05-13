@@ -11,8 +11,10 @@ public class Pistolita : MonoBehaviour
     public int municion = 5;
     bool canReload = true;
 
-    
 
+    [Header("Shot")]
+    [SerializeField]
+    AudioSource shotSound;
     [Header("Bullet Sounds")]
     public AudioSource audioSource;
     [SerializeField]
@@ -49,6 +51,7 @@ public class Pistolita : MonoBehaviour
             {
                 animator.SetTrigger("Shoot");
                 StartCoroutine(shooting());
+                shotSound.Play();
                 audioSource.PlayDelayed(0.1f);
                 Cooldown = nextTimeToFire;
 
