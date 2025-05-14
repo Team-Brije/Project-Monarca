@@ -19,9 +19,9 @@ public class SoundManager : MonoBehaviour
         }
     }
 
-    public void PlayEnemyDeathSound(AudioClip clip)
+    /*public void PlayEnemyDeathSound(AudioClip clip)
     {
         enemyDeathSource.PlayOneShot(clip); // Reproduce sin interrupciones
         Debug.Log("Enemy death sound played.");
-    }
+    }*/
 }

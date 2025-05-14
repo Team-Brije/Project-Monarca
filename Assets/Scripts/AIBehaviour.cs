@@ -49,6 +49,12 @@ public class AIBehaviour : MonoBehaviour
             audioSource.Play();
         }
         //Debug.Log(currentState.ToString());
+
+        if (currentState.disparando == true)
+        {
+            Disparo.Play();
+            currentState.disparando = false;
+        }
     }
 
     

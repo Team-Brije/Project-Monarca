@@ -49,6 +49,7 @@ public class PauseMenu : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
             menuON = true;
+            Time.timeScale = 0f;
         }
         else if (Input.GetKeyUp(KeyCode.Escape) && menuON)
         {
@@ -91,6 +92,7 @@ public class PauseMenu : MonoBehaviour
         pauseMenu.SetActive(false);
         settingsMenu.SetActive(false);
         menuON = false;
+        Time.timeScale = 1f;
     }
 
     public void MainMenu()

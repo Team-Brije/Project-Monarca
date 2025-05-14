@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyHealth : MonoBehaviour
 {
     [SerializeField]
-    AudioClip deathSound;   
+    AudioSource deathSound;   
     public int vidaMaloso = 5;
     public bool isDead = false;
     public GameObject enemyfull;
@@ -14,7 +14,7 @@ public class EnemyHealth : MonoBehaviour
         if(vidaMaloso == 0)
         {
             isDead = true;
-            SoundManager.Instance.PlayEnemyDeathSound(deathSound);
+            deathSound.Play();
             Destroy(enemyfull);
         }
     }

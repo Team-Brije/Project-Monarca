@@ -37,7 +37,9 @@ public class States
     public bool veJugador= false;
     public bool resetSee=false;
 
-   
+    public bool disparando = false;
+
+
     public States(GameObject _npc, NavMeshAgent _agent, Animator _anim, Transform _player, List<GameObject> _waypoints, List<GameObject> _waypointsSch)
     {
         npc = _npc;
@@ -183,6 +185,7 @@ public class Pursue : States
             //ifpara checar si esta a distancia par atacarnos
             if(CanAttackPlayer()){
                 nextState = new Attack(npc, agent, anim, player, Waypoints, WaypointsSch);
+                disparando = true;
                 stage = EVENT.EXIT;
             }
             else if(!CanSeePlayer()){ //comprobamos que todavia el enemigo puede ver al jugador
@@ -230,6 +233,8 @@ public class Attack : States
             canAttack = false;
             cooldown = 0;
             anim.SetTrigger("Shoot");
+            disparando = true; 
+
         }
         if (!canAttack)
         {
