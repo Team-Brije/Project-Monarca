@@ -1,5 +1,93 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!243 &-8602313081979975836
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: ChasingMusic
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: 634579b3575e171468700ebd80e18cf6
+  m_Children: []
+  m_Volume: 945531b80196a414eb4157e7a697f952
+  m_Pitch: 403218938cc4ffd419973b77831812d1
+  m_Send: 00000000000000000000000000000000
+  m_Effects:
+  - {fileID: -8018421199266767742}
+  - {fileID: -8455563287972676393}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
+--- !u!244 &-8455563287972676393
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: a999748a08154f14e9e0d67a1956bc7b
+  m_EffectName: ParamEQ
+  m_MixLevel: c3125219320f39e41927a3c43636a552
+  m_Parameters:
+  - m_ParameterName: Center freq
+    m_GUID: 0a53dc4d7156f6f4f86c41bec526d744
+  - m_ParameterName: Octave range
+    m_GUID: dcc8eedbf8f5a7f45a60c4da2bd7ff0f
+  - m_ParameterName: Frequency gain
+    m_GUID: 049ed656b645f6e4494f40a3f57d536b
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
+--- !u!244 &-8018421199266767742
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: c9c573cb6ccdbdc4b9bd3997d972be7e
+  m_EffectName: Attenuation
+  m_MixLevel: e1348d97d93f5ed4d955361e931e621c
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
+--- !u!244 &-7914229559890544955
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: c274f9fb38ec17b428716d24150c7599
+  m_EffectName: Attenuation
+  m_MixLevel: 69e99311e4986e14d9eebd8dc1f33514
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
+--- !u!244 &-3306326745928255317
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: 46bb391be4bbca9419c853d89778f449
+  m_EffectName: ParamEQ
+  m_MixLevel: c172c388ed3b7734d88ffe5dd8f76cc6
+  m_Parameters:
+  - m_ParameterName: Center freq
+    m_GUID: 6c0609032193aa54286c731c6799fab6
+  - m_ParameterName: Octave range
+    m_GUID: 5b4a9632fade86349b7713b0f821f430
+  - m_ParameterName: Frequency gain
+    m_GUID: 52b6000c160822144bdc5a306e91b8bc
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
 --- !u!241 &24100000
 AudioMixerController:
   m_ObjectHideFlags: 0
@@ -20,6 +108,8 @@ AudioMixerController:
   m_AudioMixerGroupViews:
   - guids:
     - 3e08476e29f38d347bacf6fdc2c6367b
+    - 7f06eeef448d8bb48b3233e441e5961a
+    - 634579b3575e171468700ebd80e18cf6
     name: View
   m_CurrentViewIndex: 0
   m_TargetSnapshot: {fileID: 24500006}
@@ -32,7 +122,9 @@ AudioMixerGroupController:
   m_Name: Master
   m_AudioMixer: {fileID: 24100000}
   m_GroupID: 3e08476e29f38d347bacf6fdc2c6367b
-  m_Children: []
+  m_Children:
+  - {fileID: 6761409184517058216}
+  - {fileID: -8602313081979975836}
   m_Volume: 2353abc74b79d794d8c8c1ccd7655c17
   m_Pitch: 4b18bd387b70bc84dbc41c953f2b5792
   m_Send: 00000000000000000000000000000000
@@ -65,5 +157,34 @@ AudioMixerSnapshotController:
   m_Name: Snapshot
   m_AudioMixer: {fileID: 24100000}
   m_SnapshotID: 836cd1ac32d95d04b9a907e955654b38
-  m_FloatValues: {}
+  m_FloatValues:
+    5b4a9632fade86349b7713b0f821f430: 1
+    6c0609032193aa54286c731c6799fab6: 306
+    049ed656b645f6e4494f40a3f57d536b: 2.35
+    945531b80196a414eb4157e7a697f952: -0.3
+    97d7e65a2f5cdc0448c0194a23fd3b0f: 1
+    d71c3caa041681245a11aed27d1d4530: -5.2
+    dcc8eedbf8f5a7f45a60c4da2bd7ff0f: 1.55
+    52b6000c160822144bdc5a306e91b8bc: 2.22
+    0a53dc4d7156f6f4f86c41bec526d744: 8886
   m_TransitionOverrides: {}
+--- !u!243 &6761409184517058216
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: BackgroundMusic
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: 7f06eeef448d8bb48b3233e441e5961a
+  m_Children: []
+  m_Volume: d71c3caa041681245a11aed27d1d4530
+  m_Pitch: 97d7e65a2f5cdc0448c0194a23fd3b0f
+  m_Send: 00000000000000000000000000000000
+  m_Effects:
+  - {fileID: -7914229559890544955}
+  - {fileID: -3306326745928255317}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0

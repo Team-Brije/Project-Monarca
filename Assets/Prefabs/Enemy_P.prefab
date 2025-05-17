@@ -198,7 +198,7 @@ MonoBehaviour:
   player: {fileID: 0}
   audioSource: {fileID: 4701051639649391502}
   audioClip: {fileID: 8300000, guid: c6ce6ac5cad4a134d8e9a16bcb57faee, type: 3}
-  Disparo: {fileID: 0}
+  Disparo: {fileID: 2508212772844789539}
   waypoints:
   - {fileID: 0}
   - {fileID: 0}
@@ -268,7 +268,7 @@ AudioSource:
   m_GameObject: {fileID: 2321732239512860918}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 1440442754253877318, guid: 736ba1bca555ec74fb2b38b7e541f9d3,
+  OutputAudioMixerGroup: {fileID: -5457190624028876088, guid: 4526c868672a9674ab675573569c62e1,
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 56d38b5474d7ef24681ec07e10312026, type: 3}
   m_PlayOnAwake: 0
@@ -410,7 +410,7 @@ AudioSource:
   m_GameObject: {fileID: 2357130667802382177}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 6407438972855027899, guid: 736ba1bca555ec74fb2b38b7e541f9d3,
+  OutputAudioMixerGroup: {fileID: -1274988279964119989, guid: 4526c868672a9674ab675573569c62e1,
     type: 2}
   m_audioClip: {fileID: 8300000, guid: c6ce6ac5cad4a134d8e9a16bcb57faee, type: 3}
   m_PlayOnAwake: 0
@@ -666,7 +666,7 @@ AudioSource:
   m_GameObject: {fileID: 7782650209045642297}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 1440442754253877318, guid: 736ba1bca555ec74fb2b38b7e541f9d3,
+  OutputAudioMixerGroup: {fileID: 561765481532766048, guid: 4526c868672a9674ab675573569c62e1,
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 5367347deebe20c4daa744094707bae0, type: 3}
   m_PlayOnAwake: 1

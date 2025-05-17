@@ -8,6 +8,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
     [Header("Sounds")]
     [SerializeField]
     AudioSource walkSource;
+    public AudioSource crouchSource;
     bool isMoving = false;
 
 
@@ -84,7 +85,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
     }
 
     public bool sliding;
-    public bool crouching;
+    public bool crouching = false;
     public bool wallrunning;
     public bool climbing;
     public bool vaulting;
@@ -152,14 +153,29 @@ public class PlayerMovementAdvanced : MonoBehaviour
         // Si debería estar moviéndose pero el audio no está activo
         if (shouldBeMoving && !isMoving)
         {
-            walkSource.Play();
             isMoving = true;
+
+            if (crouching)
+            {
+                if (!crouchSource.isPlaying)
+                    crouchSource.Play();
+            }
+            else
+            {
+                if (!walkSource.isPlaying)
+                    walkSource.Play();
+            }
         }
-        // Si no debería estar moviéndose pero el audio está activo
+        // Si dejó de moverse
         else if (!shouldBeMoving && isMoving)
         {
-            walkSource.Pause(); // o walkSource.Stop() según lo que prefieras
             isMoving = false;
+
+            if (walkSource.isPlaying)
+                walkSource.Stop();
+
+            if (crouchSource.isPlaying)
+                crouchSource.Stop();
         }
 
         // when to jump
@@ -179,6 +195,13 @@ public class PlayerMovementAdvanced : MonoBehaviour
             rb.AddForce(Vector3.down * 5f, ForceMode.Impulse);
 
             crouching = true;
+
+            walkSource.Stop();
+            if (isMoving)
+            {
+                crouchSource.Play();
+            }
+            
         }
 
         // stop crouch
@@ -187,6 +210,12 @@ public class PlayerMovementAdvanced : MonoBehaviour
             transform.localScale = new Vector3(transform.localScale.x, startYScale, transform.localScale.z);
 
             crouching = false;
+            crouchSource.Stop();
+            
+            if (isMoving)
+            {
+                walkSource.Play();
+            }
         }
     }
 
